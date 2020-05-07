@@ -15,7 +15,7 @@ set oem coreos.oem.id=packet
 
 if(isset($_GET['ip'])) {
   echo '
-  kernel ip=' . htmlspecialchars($_GET["ip"]) . '::vm_v4defaultgw:vm_v4netmask:vm_nodename.vm_domainname:ens192:none coreos.inst.install_dev=sda coreos.inst.ignition_url=ocp_url_ign';
+  kernel ip='. ($_GET["ip"]).'::'.($_GET["gw"]).':'.($_GET["mask"]).':'.($_GET["hostname"]).':ens192:none coreos.inst.install_dev=sda';
 } else {
   echo '
   kernel ${coreos-url}/rhcos-${zstream}-${arch}-installer-kernel-${arch} ${console} ${first-boot} ${auto-login} ${oem}';
