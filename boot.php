@@ -23,7 +23,7 @@ if(isset($_GET['mask'])) {
 
 if(isset($_GET['ip'])) {
   echo '
-  kernel ip='. ($_GET["ip"]).'::'.($_GET["gw"]).':'.$nm.':'.($_GET["hostname"]).':ens192:none coreos.inst.install_dev=sda';
+  kernel ip='. ($_GET["ip"]).'::'.($_GET["gw"]).':'.($_GET["netmask"]).':'.($_GET["hostname"]).':ens192:none coreos.inst.install_dev=sda';
 } else {
   echo '
   kernel ${coreos-url}/rhcos-${zstream}-${arch}-installer-kernel-${arch} ${console} ${first-boot} ${auto-login} ${oem}';
