@@ -27,3 +27,9 @@ set oem coreos.oem.id=packet
   initrd ${coreos-url}/rhcos-${zstream}-${arch}-installer-initramfs.${arch}.img
   boot
   ```
+
+# Notes
+
+- Use `boot.js` to host your own script via Cloudflare Workers
+  - Publicly available version here: https://ipxe.shiftius.workers.dev/
+- Use `boot.php` to self-host on an existing PHP-enabled web server
