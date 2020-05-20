@@ -31,14 +31,18 @@ async function handleRequest(request) {
   var nm = getParameterByName('netmask')
   var hn = getParameterByName('hostname')
   var ns = getParameterByName('ns')
+  var ep = getParameterByName('ep')
+  var node = getParameterByName('node')
 
   var ka_ip = `ip=${ip}::${gw}:${nm}:${hn}:ens192:none nameserver=` + (ns ? ns : '1.1.1.1')
+  var ep_ig = `http://${ep}/${node}.ign`
+
   var ka    = 'kernel \${coreos-url}/rhcos-\${release}.\${zstream}-${arch}-installer-kernel-\${arch} \${console} \${first-boot} \${auto-login} ' + (ip ? ka_ip : 'ip=dhcp')
   var init  = '\${coreos-url}/rhcos-\${release}.\${zstream}-\${arch}-installer-initramfs.\${arch}.img'
   var initr = 'rhcos-\${release}.\${zstream}-\${arch}-installer-initramfs.\${arch}.img'
   var cs    = `nomodeset rd.neednet=1 initrd=${initr} coreos.inst=yes coreos.inst.install_dev=sda coreos.inst.image_url=\${coreos-img}`
-  var ign   = `coreos.inst.ignition_url=https://metadata.packet.net/userdata`
-
+  
+  var ign   = 'coreos.inst.ignition_url=' + (ep ? ep_ig : 'https://metadata.packet.net/userdata')
   var boot = 
 `#!ipxe
 
